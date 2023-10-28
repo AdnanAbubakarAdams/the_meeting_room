@@ -11,6 +11,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// CONTROLLERS AND MIDDLEWARES
+const meetingRoomController = require("./controllers/meetingRoomController");
+app.use("/rooms", meetingRoomController);
+
 
 // ROUTES
 app.get("/", (req, res) => {
