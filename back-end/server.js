@@ -5,7 +5,7 @@ const app = require("./app.js");
 require("dotenv").config();
 
 // PORT 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3035;
 
 // LISTENING ON ....
 app.listen(PORT, () => {
