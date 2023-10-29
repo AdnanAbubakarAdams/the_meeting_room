@@ -25,11 +25,11 @@ const getBooking = async (id) => {
 
 // QUERY TO CREATE A BOOKING
 const createBooking = async (booking) => {
-    const { meeting_name, startDate, endDate, attendees, room_id } = booking;
+    const { meeting_name, start_date, end_date, attendees, room_id } = booking;
     try {
         const newBooking = await db.one(
-            "INSERT INTO booking (meeting_name, startDate, endDate, attendees, room_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-            [meeting_name, startDate, endDate, attendees, room_id]
+            "INSERT INTO booking (meeting_name, start_date, end_date, attendees, room_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [meeting_name, start_date, end_date, attendees, room_id]
         );
         return newBooking;
     } catch (error) {

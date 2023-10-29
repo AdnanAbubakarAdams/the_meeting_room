@@ -13,7 +13,7 @@ app.use(express.json());
 
 // CONTROLLERS AND MIDDLEWARES
 const meetingRoomController = require("./controllers/meetingRoomController");
-app.use("/rooms", meetingRoomController);
+app.use("/meeting-rooms", meetingRoomController);
 
 const bookingController = require("./controllers/bookingController");
 app.use("/bookings", bookingController)
