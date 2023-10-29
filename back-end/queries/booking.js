@@ -13,10 +13,21 @@ const getAllBookings = async () => {
     }
 };
 
+// QUERY TO RETRIEVE A SINGLE BOOKING
+const getBooking = async (id) => {
+    try {
+        const singleBooking = await db.one("SELECT * FROM booking WHERE id=$1", id);
+        return singleBooking;
+    } catch (error) {
+        return error;
+    }
+};
+
 
 
 
 // EXPORTING BOOKING QUERIES TO BOOKING CONTROLLER
 module.exports = {
-    getAllBookings
+    getAllBookings,
+    getBooking
 };

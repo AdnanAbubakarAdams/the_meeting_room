@@ -4,7 +4,8 @@ const bookings = express.Router();
 
 // IMPORTING BOOKINGS QUERIES
 const {
-    getAllBookings
+    getAllBookings,
+    getBooking
 } = require("../queries/booking.js");
 
 // BUILDING ROUTES
@@ -17,7 +18,20 @@ bookings.get("/", async (req, res) => {
     } else {
         res.status(500).json({ error: "An Error occured while retrieving all bookings!" })
     }
-})
+});
+
+// SINGLE BOOKING // SHOW
+bookings.get("/:id", async (req, res) => {
+    const { id } = req.params;
+    const booking = await getBooking(id);
+    if (booking) {
+        res.json(booking);
+    } else {
+        res.status(404).json({ error: "An error occured while retrieving booking!" })
+    }
+});
+
+
 
 
 
