@@ -5,7 +5,9 @@ const bookings = express.Router();
 // IMPORTING BOOKINGS QUERIES
 const {
     getAllBookings,
-    getBooking
+    getBooking,
+    createBooking,
+    cancelBooking
 } = require("../queries/booking.js");
 
 // BUILDING ROUTES
@@ -31,7 +33,26 @@ bookings.get("/:id", async (req, res) => {
     }
 });
 
+// CREATE A BOOKING
+bookings.post("/", async (req, res) => {
+    try {
+        const booking = await createBooking(req.body);
+        res.json(booking);
+    } catch (error) {
+        res.status(400).json({ error: "An error occured while booking a meeting room!" });
+    }
+});
 
+// DELETE BOOKING
+bookings.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    const deletedBooking  = await cancelBooking(id);
+    if (deletedBooking.id) {
+        res.status(200).json(deletedBooking);
+    } else {
+        res.status(400).json("the said booking cannot be found!");
+    }
+})
 
 
 
