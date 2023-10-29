@@ -15,6 +15,9 @@ app.use(express.json());
 const meetingRoomController = require("./controllers/meetingRoomController");
 app.use("/rooms", meetingRoomController);
 
+const bookingController = require("./controllers/bookingController");
+app.use("/bookings", bookingController)
+
 
 // ROUTES
 app.get("/", (req, res) => {

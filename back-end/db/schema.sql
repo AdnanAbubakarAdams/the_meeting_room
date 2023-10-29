@@ -14,9 +14,9 @@ CREATE TABLE meeting_room (
 
 CREATE TABLE booking (
     id SERIAL PRIMARY KEY,
-    room_id INT REFERENCES meeting_room(id),
     meeting_name TEXT NOT NULL,
     startDate TIMESTAMP NOT NULL,
     endDate TIMESTAMP NOT NULL,
-    attendees TEXT
+    attendees TEXT,
+    room_id INT REFERENCES meeting_room(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
