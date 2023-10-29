@@ -37,6 +37,20 @@ const createBooking = async (booking) => {
     }
 };
 
+// QUERY TO RETRIEVE AVAILABLE MEETING ROOM IS AVAILABLE FOR BOOKING
+const isRoomAvailableForBooking = async (booking) => {
+    const { room_id, start_date, end_date } = booking;
+    try {
+        const roomAvailabilty = await db.any(
+            "SELECT * FROM booking WHERE room_id = $1 AND NOT ($2 >= end_date OR $3 <= start_date)",
+            [room_id, start_date, end_date]
+        );
+        return roomAvailabilty;
+    } catch (error) {
+        return error;
+    }
+}
+
 // CANCEL OR DELETE A BOOKING
 const cancelBooking = async (id) => {
     try {
@@ -58,5 +72,6 @@ module.exports = {
     getAllBookings,
     getBooking,
     createBooking,
+    isRoomAvailableForBooking,
     cancelBooking
 };

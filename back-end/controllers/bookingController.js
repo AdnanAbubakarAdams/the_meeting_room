@@ -7,6 +7,7 @@ const {
     getAllBookings,
     getBooking,
     createBooking,
+    isRoomAvailableForBooking,
     cancelBooking
 } = require("../queries/booking.js");
 
@@ -42,6 +43,16 @@ bookings.post("/", async (req, res) => {
         res.status(400).json({ error: "An error occured while booking a meeting room!" });
     }
 });
+
+// ROOM AVAILABILTY FOR GIVEN DATE AND TIME SLOTS
+bookings.post("/", async (req, res) => {
+    try {
+        const roomAvailableForBooking = await isRoomAvailableForBooking(req.body);
+        res.json(roomAvailableForBooking);
+    } catch (error) {
+        res.status(400).json({ error: 'The meeting room is not available for the set time!' })
+    }
+})
 
 // DELETE BOOKING
 bookings.delete("/:id", async (req, res) => {
