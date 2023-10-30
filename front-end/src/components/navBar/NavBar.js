@@ -1,11 +1,26 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 
 // STYLE SHEET CSS
-import "./NavBar.scss";
+import "./NavBar.css";
 
 const NavBar = () => {
   return (
-    <div>NavBar</div>
+    <>
+          <section>
+            <div className="navBar">
+              <NavLink exact to="e" className="nav-link">
+                Meeting Rooms
+              </NavLink>
+              <NavLink to="a" className="nav-link">
+                Bookings
+              </NavLink>
+              <NavLink to="s" className="nav-link">
+                New Room
+              </NavLink>
+            </div>
+          </section>
+        </>
   )
 }
 
