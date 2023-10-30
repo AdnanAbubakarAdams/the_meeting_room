@@ -45,12 +45,18 @@ bookings.post("/", async (req, res) => {
 });
 
 // ROOM AVAILABILTY FOR GIVEN DATE AND TIME SLOTS
-bookings.post("/", async (req, res) => {
+bookings.post("/available", async (req, res) => {
     try {
         const roomAvailableForBooking = await isRoomAvailableForBooking(req.body);
-        res.json(roomAvailableForBooking);
+        if (roomAvailableForBooking) {
+            res.json(roomAvailableForBooking);
+        } else {
+            res.status(400).json({ error: 'The meeting room is not available for the set time!' })
+            return;
+        }
+        
     } catch (error) {
-        res.status(400).json({ error: 'The meeting room is not available for the set time!' })
+        res.status(400).json({ error: 'An error occured while checking for rooms available!' })
     }
 })
 

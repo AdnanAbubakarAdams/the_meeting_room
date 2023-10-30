@@ -75,3 +75,7 @@ module.exports = {
     isRoomAvailableForBooking,
     cancelBooking
 };
+
+// const meetingRoom = express.Router();
+// const bookingsController = require('./bookingsController');
+// meetingRoom.use('/:Id/bookings', bookingsController);
