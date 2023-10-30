@@ -1,0 +1,30 @@
+.navBar {
+    width: 590px;
+	margin: 27px auto 0;
+    height: 4rem;
+    background-color: #000;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+	border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-link.active {
+	border-radius: 8px;
+    background-color: #e5e5e5; /* Change this to your desired active link background color */
+    color: #000; /* Change this to your desired active link text color */
+  }
+  
