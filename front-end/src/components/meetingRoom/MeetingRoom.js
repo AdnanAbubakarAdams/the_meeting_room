@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import Rooms from "./Rooms";
+import Loading from "../loading/Loading";
 
 // STYLE SHEET CSS
 import "./MeetingRoom.scss";
@@ -73,6 +74,7 @@ const MeetingRoom = () => {
           placeholder="http://"
           required
         />
+        <button>Find</button>
       </form>
       <ul className="meetingRoom-list">
         {meetingRoom.map((room) => {
@@ -83,6 +85,7 @@ const MeetingRoom = () => {
           );
         })}
       </ul>
+      <Loading loading={loading} />
     </div>
   );
 };
