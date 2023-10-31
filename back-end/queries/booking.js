@@ -37,19 +37,27 @@ const createBooking = async (booking) => {
     }
 };
 
-// QUERY TO RETRIEVE AVAILABLE MEETING ROOM IS AVAILABLE FOR BOOKING
-const isRoomAvailableForBooking = async (booking) => {
-    const { room_id, start_date, end_date } = booking;
+// UPDATE A BOOKING
+const updateBooking = async (booked, id) => {
     try {
-        const roomAvailabilty = await db.any(
-            "SELECT * FROM booking WHERE room_id = $1 AND NOT ($2 >= end_date OR $3 <= start_date)",
-            [room_id, start_date, end_date]
-        );
-        return roomAvailabilty;
+    //   console.log("editing request with the id of " + id);
+      const updatedBooking = await db.one(
+        "UPDATE booking SET meeting_name=$1, start_date=$2, end_date=$3, attendees=$4, room_id=$5, WHERE id=$6 RETURNING *",
+        [
+          booked.meeting_name,
+          booked.start_date,
+          booked.end_date,
+          booked.attendees,
+          booked.room_id,
+          id,
+        ]
+      );
+      return updatedBooking;
     } catch (error) {
-        return error;
+      return error;
     }
-}
+  };
+
 
 // CANCEL OR DELETE A BOOKING
 const cancelBooking = async (id) => {
@@ -57,13 +65,28 @@ const cancelBooking = async (id) => {
         const deletedBooking = await db.one(
             "DELETE FROM booking WHERE id=$1 RETURNING *", 
             id
-        );
-        return deletedBooking;
-    } catch (error) {
-        return error;
+            );
+            return deletedBooking;
+        } catch (error) {
+            return error;
+        }
     }
-}
-
+    
+    
+    
+    // QUERY TO RETRIEVE AVAILABLE MEETING ROOM IS AVAILABLE FOR BOOKING
+    // const isRoomAvailableForBooking = async (booking) => {
+    //     const { room_id, start_date, end_date } = booking;
+    //     try {
+    //         const roomAvailabilty = await db.any(
+    //             "SELECT * FROM booking WHERE room_id = $1 AND ($2, $3) OVERLAPS (start_date, end_date)",
+    //             [room_id, start_date, end_date]
+    //         );
+    //         return roomAvailabilty;
+    //     } catch (error) {
+    //         return error;
+    //     }
+    // }
 
 
 
@@ -72,8 +95,11 @@ module.exports = {
     getAllBookings,
     getBooking,
     createBooking,
-    isRoomAvailableForBooking,
-    cancelBooking
+    updateBooking,
+    cancelBooking,
+    // isRoomAvailableForBooking
+    // getASpecificBooking,
+   
 };
 
 // const meetingRoom = express.Router();

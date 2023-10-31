@@ -37,10 +37,50 @@ const createAMeetingRoom = async (room) => {
     }
 };
 
+// QUERY TO GET THE BOOKING FOR A SPECIFIC ROOM
+const getBookingForSpecificRoom = async (id) => {
+    try {
+        const specificRoom = await db.manyOrNone(
+            "SELECT * FROM booking WHERE room_id = $1 AND start_date > NOW()", id
+        )
+        return specificRoom;
+    } catch (error) {
+        return error;
+    }
+}
+
+// available
+const isRoomAvailableForBooking = async (booking) => {
+    const { room_id, start_date, end_date } = booking;
+    try {
+        const roomAvailabilty = await db.any(
+            "SELECT * FROM booking WHERE room_id = $1 AND ($2, $3) OVERLAPS (start_date, end_date)",
+            [room_id, start_date, end_date]
+        );
+        return roomAvailabilty;
+    } catch (error) {
+        return error;
+    }
+}
+
+//  const isRoomAvailableForBooking = async () => {
+//     try {
+//         const availableRooms = await db.any(
+//             "SELECT meeting_room.id, meeting_room.name, meeting_room.capacity, meeting_room.floor FROM meeting_room LEFT JOIN booking ON meeting_room.id = booking.room_id WHERE booking.id IS NULL OR NOT (booking.start_date <= $1 AND booking.end_date >= $2) AND meeting_room.capacity >= $3  AND meeting_room.floor = $4 GROUP BY meeting_room.id"
+//         )
+//         return availableRooms;
+//     } catch (error) {
+//         return error;
+//     }
+//  }
+
+
 
 // EXPORTING MEETING ROOM QUERIES TO MEETING ROOM CONTROLLER
 module.exports = {
     getAllMeetingRooms,
     getMeetingRoom,
-    createAMeetingRoom
+    createAMeetingRoom, 
+    getBookingForSpecificRoom,
+    isRoomAvailableForBooking
 };

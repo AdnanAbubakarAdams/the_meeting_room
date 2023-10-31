@@ -1,13 +1,17 @@
 // CONFIGURATIONS FOR BOOKINGS
 const express = require("express");
-const bookings = express.Router();
+const bookings = express.Router()
+// const bookings = express.Router({ mergeParams: true });
 
 // IMPORTING BOOKINGS QUERIES
 const {
     getAllBookings,
     getBooking,
     createBooking,
-    isRoomAvailableForBooking,
+    updateBooking,
+    
+    // getASpecificBooking,
+    // isRoomAvailableForBooking,
     cancelBooking
 } = require("../queries/booking.js");
 
@@ -44,21 +48,44 @@ bookings.post("/", async (req, res) => {
     }
 });
 
-// ROOM AVAILABILTY FOR GIVEN DATE AND TIME SLOTS
-bookings.post("/available", async (req, res) => {
-    try {
-        const roomAvailableForBooking = await isRoomAvailableForBooking(req.body);
-        if (roomAvailableForBooking) {
-            res.json(roomAvailableForBooking);
-        } else {
-            res.status(400).json({ error: 'The meeting room is not available for the set time!' })
-            return;
-        }
-        
-    } catch (error) {
-        res.status(400).json({ error: 'An error occured while checking for rooms available!' })
+// UPDATE BOOKING
+bookings.put("/:id", async (req, res) => {
+    const { id } = req.params;
+    const updatedBooking = await updateBooking(req.body, id);
+    if (updatedBooking.id) {
+        res.status(200).json(updatedBooking);
+    } else {
+        res.status(400).json({ error: "Your booking has not been updated"});
     }
-})
+});
+
+// specific booking for a specific room
+// bookings.get("/", async (req, res) => {
+//     const { roomId } = req.params;
+  
+//     try {
+//       const allBookings = await getAllReviews(roomId);
+//       res.json(allBookings);
+//     } catch (err) {
+//       res.json(err);
+//     }
+//   });
+
+// ROOM AVAILABILTY FOR GIVEN DATE AND TIME SLOTS
+// bookings.get("/available", async (req, res) => {
+//     try {
+//         const roomAvailableForBooking = await isRoomAvailableForBooking(req.body);
+//         if (roomAvailableForBooking) {
+//             res.json(roomAvailableForBooking);
+//         } else {
+//             res.status(400).json({ error: 'The meeting room is not available for the set time!' })
+//             return;
+//         }
+        
+//     } catch (error) {
+//         res.status(400).json({ error: 'An error occured while checking for rooms available!' })
+//     }
+// })
 
 // DELETE BOOKING
 bookings.delete("/:id", async (req, res) => {

@@ -12,7 +12,7 @@ const NavBar = () => {
               <NavLink exact to="/meeting-rooms" className="nav-link">
                 Meeting Rooms
               </NavLink>
-              <NavLink to="a" className="nav-link">
+              <NavLink to="/bookings" className="nav-link">
                 Bookings
               </NavLink>
               <NavLink to="s" className="nav-link">
