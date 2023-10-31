@@ -2,15 +2,36 @@
 const express = require("express");
 const rooms = express.Router();
 
+
 // IMPORTING QUERIES
 const {
     getAllMeetingRooms,
     getMeetingRoom,
-    createAMeetingRoom
+    createAMeetingRoom,
+    getBookingForSpecificRoom,
+    isRoomAvailableForBooking
 } = require("../queries/meetingRoom.js");
+
+
 
 // BUILDING ROUTES
 
+// Search for available rooms
+rooms.get("/available", async (req, res) => {
+    // const {id} = req.params;
+    try {
+        const roomAvailableForBooking = await isRoomAvailableForBooking(req.body);
+        if (roomAvailableForBooking) {
+            res.json(roomAvailableForBooking);
+        } else {
+            res.status(400).json({ error: 'The meeting room is not available for the set time!' })
+            return;
+        }
+        
+    } catch (error) {
+        res.status(400).json({ error: 'An error occured while checking for rooms available!' })
+    }
+})
 // ALL MEETING ROOMS ROUTE // INDEX
 rooms.get("/", async (req, res) => {
     const allMeetingRooms = await getAllMeetingRooms();
@@ -43,8 +64,18 @@ rooms.post("/", async (req, res) => {
 });
 
 
-
-
+// get all the bookings for a specific room
+rooms.get("/:id/bookings", async (req, res) => {
+    const { id } = req.params
+    try {
+        const specificRoom = await getBookingForSpecificRoom(id);
+        if (specificRoom) {
+            res.json(specificRoom);
+        }
+    } catch (error) {
+        res.status(400).json({ error: "Error occured"})
+    }
+})
 
 // EXPORTING MEETING ROOMS TO APP
 module.exports = rooms;
