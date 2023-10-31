@@ -9,7 +9,7 @@ const NavBar = () => {
     <>
           <section>
             <div className="navBar">
-              <NavLink exact to="e" className="nav-link">
+              <NavLink exact to="/meeting-rooms" className="nav-link">
                 Meeting Rooms
               </NavLink>
               <NavLink to="a" className="nav-link">
