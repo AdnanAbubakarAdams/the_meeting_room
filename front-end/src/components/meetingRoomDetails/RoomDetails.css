@@ -1,0 +1,17 @@
+.details__info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 800px;
+    margin: 10px auto;
+    
+}
+
+.details__seperator {
+    margin: 10px auto;
+    align-items: center;
+    text-align: center;
+    height: 5px;
+    width: 800px;
+    background-color: black;
+    border: none;
+}
