@@ -3,12 +3,15 @@ const express = require("express");
 const bookings = express.Router()
 // const bookings = express.Router({ mergeParams: true });
 
+
+
 // IMPORTING BOOKINGS QUERIES
 const {
     getAllBookings,
     getBooking,
     createBooking,
     updateBooking,
+    // allBookings,
     
     // getASpecificBooking,
     // isRoomAvailableForBooking,
@@ -58,6 +61,23 @@ bookings.put("/:id", async (req, res) => {
         res.status(400).json({ error: "Your booking has not been updated"});
     }
 });
+
+// TEST
+// bookings.get("/", async (req, res) => {
+//     const { roomId } = req.params;
+  
+//     try {
+//       const allBooked = await allBookings(roomId);
+//       if (allBooked[0]) {
+//         res.status(200).json(allBooked);
+//       }else {
+//         res.status(500).json({ error: "server error"})
+//       }
+      
+//     } catch (err) {
+//       res.json(err);
+//     }
+//   });
 
 // specific booking for a specific room
 // bookings.get("/", async (req, res) => {

@@ -2,9 +2,24 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// MATERIAL UI
+import {
+  //   Grid,
+    Container,
+    Stack,
+    TextField,
+    Button,
+    Card,
+    CardContent,
+  } from "@mui/material";
+
+  // IMPORTING API
+const API = process.env.REACT_APP_API_URL;
+
 
 const NewRoom = () => {
 
+  let navigate = useNavigate();
     const buttonStyle = {
         backgroundColor: 'black', 
         color: '#fff',
@@ -27,7 +42,7 @@ const NewRoom = () => {
         name: "",
         capacity: "", 
         floor: ""
-      })
+      });
 
       const handleTextChanges = (e) => {
         setMeeting({ ...meeting, [e.target.id]: e.target.value })
@@ -47,31 +62,16 @@ const NewRoom = () => {
           <Card className="meetingRoom-form">
             <CardContent>
               <h3>Create A Room: </h3>
-              <form >
+              <form onSubmit={handleSubmit}>
                 <Stack container spacing={2}>
-                  <Stack>
-                    <TextField
-                    //   label="StartDate"
-                      type="datetime-local"
-                      placeholder="2/14/2022 11:00 AM"
-                      variant="outlined"
-                      id="start"
-                      value=""
-                      onChange=""
-                      fullWidth
-                      required
-                    />
-                  </Stack>
                   <Stack >
                     <TextField
                       label="Room Name"
                       placeholder="Boardroom 1"
-                    //   type="datetime-local"
                       variant="outlined"
-                      id="end"
-                    //   helperText="Request Date"
-                      value=""
-                      onChange=""
+                      id="name"
+                      value={meeting.name}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />
@@ -81,9 +81,9 @@ const NewRoom = () => {
                       label="Floor"
                       placeholder="22"
                       variant="outlined"
-                      id="description"
-                      value=""
-                      onChange=""
+                      id="floor"
+                      value={meeting.floor}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />
@@ -94,8 +94,8 @@ const NewRoom = () => {
                       placeholder="4"
                       variant="outlined"
                       id="capacity"
-                      value=""
-                      onChange=""
+                      value={meeting.capacity}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />

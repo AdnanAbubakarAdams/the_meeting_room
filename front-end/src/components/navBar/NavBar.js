@@ -15,7 +15,7 @@ const NavBar = () => {
               <NavLink to="/bookings" className="nav-link">
                 Bookings
               </NavLink>
-              <NavLink to="s" className="nav-link">
+              <NavLink to="/rooms/new" className="nav-link">
                 New Room
               </NavLink>
             </div>

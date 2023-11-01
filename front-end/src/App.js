@@ -9,6 +9,7 @@ import MeetingRoom from './components/meetingRoom/MeetingRoom';
 import RoomDetails from './components/meetingRoomDetails/RoomDetails';
 import Booking from './components/booking/Booking';
 import BookingDetails from './components/bookingDetails/BookingDetails';
+import NewRoom from './components/newRoomForms/NewRoom';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path='/meeting-rooms/:id' element={<RoomDetails />} />
           <Route path='/bookings' element={<Booking />} />
           <Route path='/bookings/:id' element={<BookingDetails/>} />
+          <Route path='/rooms/new' element={<NewRoom/>} />
           
         </Routes>
       </Router>
