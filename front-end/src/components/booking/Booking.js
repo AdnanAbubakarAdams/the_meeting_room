@@ -20,6 +20,7 @@ const Booking = () => {
     axios
       .get(`${API}/bookings`)
       .then((response) => {
+        console.log(response.data)
         setTimeout(() => {
           setBooking(response.data);
           setLoading(false);
@@ -31,11 +32,11 @@ const Booking = () => {
 
   return (
     <div>
-      <ul className="meetingRoom-list">
+      <ul className="booked-list">
         {booking.map((book) => {
           return (
             <li>
-              <Booked key={book.id} room={book} />
+              <Booked  key={book.id} book={book} />
             </li>
           );
         })}

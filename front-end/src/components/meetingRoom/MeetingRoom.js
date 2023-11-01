@@ -3,6 +3,7 @@ import axios from "axios";
 
 import Rooms from "./Rooms";
 import Loading from "../loading/Loading";
+import MeetingRoomForm from "../meetingRoomForm/MeetingRoomForm";
 
 // STYLE SHEET CSS
 import "./MeetingRoom.scss";
@@ -19,6 +20,7 @@ const MeetingRoom = () => {
     axios
       .get(`${API}/meeting-rooms`)
       .then((response) => {
+        console.log(response.data)
         setTimeout(() => {
           setMeetingRoom(response.data);
           setLoading(false);
@@ -29,58 +31,16 @@ const MeetingRoom = () => {
 
   return (
     <div className="meetingRoom">
-      <div className="meetingRoom__heading">Find available rooms:</div>
-      <form>
-        <br />
-        <label htmlFor="start">
-        Start:
-        <input
-          id="start"
-          value=""
-          type="text"
-          onChange=""
-          placeholder="2/14/2022 11:00 AM"
-          required
-        />
-        </label>
-        <br />
-        <label htmlFor="end">End:</label>
-        <br />
-        <input
-          id="end"
-          value=''
-          type="datetime-local"
-          onChange=''
-          placeholder="2/14/2022 11:00 AM"
-          required
-        />
-        <label htmlFor="floor">Floor:</label>
-        <br />
-        <input
-          id="floor"
-          value=''
-          type="text"
-          onChange=''
-          placeholder="22"
-          required
-        />
-        <label htmlFor="capacity">Capacity:</label>
-        <br />
-        <input
-          id="capacity"
-          value=''
-          type="number"
-          onChange=''
-          placeholder="http://"
-          required
-        />
-        <button>Find</button>
-      </form>
+      <MeetingRoomForm />
+      <div className='seperator'></div>
+
+      
+
       <ul className="meetingRoom-list">
         {meetingRoom.map((room) => {
           return (
-            <li>
-              <Rooms key={room.id} room={room} />
+            <li key={room.id}>
+              <Rooms  room={room} />
             </li>
           );
         })}

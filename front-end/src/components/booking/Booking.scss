@@ -1,0 +1,27 @@
+.booked-list {
+    display: flex;
+    flex-direction: column;
+    // padding: 1px;
+    list-style: none;
+    column-gap: 20px;
+    border-bottom: 50px;
+    // text-align: center;
+}
+
+.booked-card {
+    // text-align: center;
+    margin: 15px auto;
+    // display: inline-block;
+  width: 800px;
+  padding: 5px;
+  border-radius: 10px;
+//   border-bottom: 300px;
+  border: 1px solid black;
+//   align-items: center;
+//   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+}
+
+.booked-card a {
+    text-decoration: none;
+    color: black;
+}

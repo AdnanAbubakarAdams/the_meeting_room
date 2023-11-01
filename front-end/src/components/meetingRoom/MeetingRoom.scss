@@ -3,7 +3,8 @@
 //   width: 800px;
 //   padding: 15px;
 //   // border: 1px solid black;
-//   align-items: center;
+  align-items: center;
+  
 //   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
 }
 
@@ -33,5 +34,16 @@
     text-decoration: none;
     color: black;
 }
+
+.seperator {
+  margin: 10px auto;
+  align-items: center;
+  text-align: center;
+  height: 5px;
+  width: 800px;
+  background-color: black;
+  border: none;
+}
+
 
 

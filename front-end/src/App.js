@@ -7,6 +7,8 @@ import NavBar from './components/navBar/NavBar';
 import Home from './pages/Home';
 import MeetingRoom from './components/meetingRoom/MeetingRoom';
 import RoomDetails from './components/meetingRoomDetails/RoomDetails';
+import Booking from './components/booking/Booking';
+import BookingDetails from './components/bookingDetails/BookingDetails';
 
 function App() {
   return (
@@ -17,6 +19,9 @@ function App() {
           <Route path='/' element={<Home/>} />
           <Route path='/meeting-rooms' element={<MeetingRoom/>} />
           <Route path='/meeting-rooms/:id' element={<RoomDetails />} />
+          <Route path='/bookings' element={<Booking />} />
+          <Route path='/bookings/:id' element={<BookingDetails/>} />
+          
         </Routes>
       </Router>
       

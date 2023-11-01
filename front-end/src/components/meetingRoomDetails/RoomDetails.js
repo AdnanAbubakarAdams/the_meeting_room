@@ -5,6 +5,10 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { SlPeople } from 'react-icons/sl';
 import { BsBuilding } from 'react-icons/bs';
 
+// components
+import BookRoomForm  from '../bookRoomForm/BookRoomForm';
+// import Booked from '../booking/Booked';
+
 // CSS 
 import "./RoomDetails.css";
 
@@ -26,6 +30,7 @@ const RoomDetails = () => {
 
 
   return (
+    <div>
     <div className='details'>
         <div className='details__info'>
         <h2>{room.name}</h2>
@@ -33,6 +38,10 @@ const RoomDetails = () => {
         <p> <BsBuilding/> Floor: {room.floor}</p>
         </div>
         <div className='details__seperator'></div>
+    </div>
+    <BookRoomForm />
+    <div className='details__seperator'></div>
+    {/* <Booked /> */}
     </div>
   )
 }
