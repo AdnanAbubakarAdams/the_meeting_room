@@ -1,6 +1,7 @@
 // CONFIGURATIONS FOR MEETING ROOMS
 const express = require("express");
 const rooms = express.Router();
+// const bookingController = require("./bookingController.js");
 
 
 // IMPORTING QUERIES
@@ -13,6 +14,7 @@ const {
 } = require("../queries/meetingRoom.js");
 
 
+// rooms.use("/:roomId/bookings", bookingController);
 
 // BUILDING ROUTES
 

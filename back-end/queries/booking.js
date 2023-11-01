@@ -13,6 +13,19 @@ const getAllBookings = async () => {
     }
 };
 
+// TEST
+// const allBookings = async (room_id) => {
+//     try {
+//       const allBooked = await db.any(
+//         "SELECT * FROM bookings WHERE room_id=$1",
+//         room_id
+//       );
+//       return allBooked;
+//     } catch (err) {
+//       return err;
+//     }
+// }
+
 // QUERY TO RETRIEVE A SINGLE BOOKING
 const getBooking = async (id) => {
     try {
@@ -97,6 +110,7 @@ module.exports = {
     createBooking,
     updateBooking,
     cancelBooking,
+    // allBookings
     // isRoomAvailableForBooking
     // getASpecificBooking,
    
