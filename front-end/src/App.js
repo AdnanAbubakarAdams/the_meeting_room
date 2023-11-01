@@ -1,6 +1,7 @@
 import './App.css';
 // import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './Providers/UserProviders';
 
 // Components
 import NavBar from './components/navBar/NavBar';
@@ -14,6 +15,7 @@ import NewRoom from './components/newRoomForms/NewRoom';
 function App() {
   return (
     <div className="App">
+      <UserProvider>
       <Router>
         <NavBar />
         <Routes>
@@ -26,7 +28,7 @@ function App() {
           
         </Routes>
       </Router>
-      
+      </UserProvider>
     </div>
   );
 }

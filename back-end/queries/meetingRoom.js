@@ -74,6 +74,10 @@ const isRoomAvailableForBooking = async (booking) => {
 //     }
 //  }
 
+// SELECT *
+// FROM events
+// WHERE event_time BETWEEN ? AND ?;
+
 
 
 // EXPORTING MEETING ROOM QUERIES TO MEETING ROOM CONTROLLER

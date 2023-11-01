@@ -1,0 +1,69 @@
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  getAuth,
+  getAdditionalUserInfo,
+} from "firebase/auth";
+
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+// CRETES AN INSTANCE OF AUTHENTICATION AND SETS CURRENT LANGUAGE TO THE DEFAULT DEVICE BROWSER PREFERENCE
+export const auth = getAuth();
+auth.useDeviceLanguage();
+// CREATE A PROVIDE FOR ANY AUTHENTICATION METHOD WE USING (TWITTER, FACEBOOK, EMAIL OR PASSWORD)
+const googleProvider = new GoogleAuthProvider();
+
+export const signOut = async () => {
+  try {
+    await auth.signOut();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const signInWithGoogle = () => {
+  try {
+    //the signInWithPopUp() method accepts ANY provider we create. This is all our authentication logic
+    signInWithPopup(auth, googleProvider).then((res) => {
+      const loggedInUser = res.user;
+      const isNewUser = getAdditionalUserInfo(res).isNewUser;
+
+      if (isNewUser) {
+        //delete user if the user is not in our database, regardless of signing in with Google
+        loggedInUser.delete().then(() => {
+          signOut().then(() => {
+            console.log("Signed Out!");
+            alert("Please Sign Up First!!");
+          });
+        });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const signUpWithGoogle = async () => {
+  try {
+    signInWithPopup(auth, googleProvider).then((res) => {
+      const user = res.user;
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
