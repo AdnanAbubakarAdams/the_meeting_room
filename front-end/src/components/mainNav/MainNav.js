@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useAuth } from "../utils/AuthContext";
 import NavBar from '../navBar/NavBar';
 
 
 
 const MainNav = () => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const {user, logoutUser} = useAuth()
 
     // const logoutClick = () => {
@@ -21,10 +21,10 @@ const MainNav = () => {
 
         <div className="links--wrapper">
             {user ? (
-            <>
-            <div className='navComp'>
-            <NavBar />
-            </div>
+                <>
+            
+                <NavBar />
+           
                 <Link to="/" className="header--link">Home</Link>
                 <Link to="/profile" className="header--link">Profile</Link>
 

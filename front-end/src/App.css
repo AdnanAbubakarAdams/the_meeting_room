@@ -51,7 +51,9 @@
 
 .header{
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  justify-content: space-evenly;
   padding: 1em 1em;
   border-bottom: 2px solid #000;
 }
@@ -70,19 +72,26 @@
   align-items: center;
 }
 
-.navComp {
-  align-items: center;
+/* .navComp { */
+  /* align-items: center;
   justify-content: center;
   text-align: center;
-  /* margin-right: 180px; */
-  margin: auto;
-}
+  margin-right: 180px; */
+  /* margin: 0 auto; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; */
+  /* margin-right: 180px; Remove this line to center the div */
+  /* margin: 0 auto; */
+/* } */
 
 #header-logo{
   font-size: 48px;
   text-decoration-line: none;
   color: #000;
   font-weight: 900;
+  /* margin-right: 20px; */
   /* font-family: 'Oleo Script', cursive; */
 }
 
@@ -136,6 +145,10 @@ input{
   .header{
       justify-content: center;
   }
+
+  /* .navComp {
+    margin-left: 80px;
+  } */
 }
 
 @media(max-width:800px) {

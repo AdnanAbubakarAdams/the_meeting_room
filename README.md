@@ -2,59 +2,33 @@
 
 ## Tech Stack
 - Javascript
+- React
 - Node.js
 - Express
-- React
 - Postgresql
-- Auth0
-- 
-- 
+- Appwrite
 - Snyk
 
-## Highlights
+## Available Scripts
+In the project directory, you can run:
+### `npm start`
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `nodemon server.js`
+Open http://localhost:1991/ to view back-end in your browser.\
 
-1. **User Authentication:** Utilize Auth0 for user authorization, allowing users to log in using Google, Apple, Microsoft, and GitHub accounts.
-2. **Security:** All user inputs are validated and filtered, providing a high level of security.
-3. **Logging and Performance Monitoring:** Includes error logging and request logging to files, along with performance timers, making debugging and optimization easier. It can also automatically clean outdated log files.
-4. **Responsive Design:** The user interface can automatically adapt to both mobile and desktop environments.
+## Highlights
+1. **User Authentication:** Utilize Appwrite for user athentication and log in.
+
+
 
 ### Synk application Security check result
 
-![Snyk application Security check result](synk.png)
-
-## Deployment Guide
-
-1. Register an Auth0 account.
-2. Deploy `/db/schema.txt` to a PostgreSQL server.
-3. Clone the backend repo to the VPS.
-4. Create a `.env` file with the following format:
-
-```
-   HTTPS_PORT=
-   HTTP_PORT=
-   PG_HOST=
-   PG_PORT=
-   PG_DB=
-   PG_USER=
-   PG_PASSWORD=
-   SINGLE_USER_MODE=false
-   AUTH_SECRET=
-   AUTH0_BASEURL=
-   AUTH0_CLIENTID=
-   AUTH0_ISSUERBASEURL=
-```
-
-5. Update the HTTPS certificate and key under `\ssl`.
-6. Run `npm i`.
-7. Start the server using `npm run server` or `node server.js`.
-
 ### Repository
-
-- Backend repo [https://github.com/hector918/blackstone-backend](https://github.com/hector918/blackstone-backend).
-- Frontend repo [https://github.com/hector918/meeting-booking](https://github.com/hector918/meeting-booking).
+- Project Mono Repo https://github.com/AdnanAbubakarAdams/the_meeting_room
+- Github https://github.com/AdnanAbubakarAdams
 
 ### API
-
 Create a RESTFul API service with the below endpoints that read and write to the database. It should accept and return JSON payloads.
 
 | Method   | Endpoint                          | Description                                                                                                                                   | Example JSON Body Payload                                                                                                                                                                                                                                                                                                          |

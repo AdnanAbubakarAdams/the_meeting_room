@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import "./NewRoom.css"
+
 // MATERIAL UI
 import {
   //   Grid,
@@ -56,9 +58,9 @@ const NewRoom = () => {
 
 
   return (
-    <div>
+    <div className="new-form">
          <Container maxWidth="xs" className="centered-form">
-        <Stack  justify="center" spacing={4} sx={{ width: '380px'}}>
+        <Stack  justify="center" spacing={4} sx={{ width: '600px'}}>
           <Card className="meetingRoom-form">
             <CardContent>
               <h3>Create A Room: </h3>

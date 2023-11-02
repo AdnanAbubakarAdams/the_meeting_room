@@ -14,6 +14,7 @@ const API = process.env.REACT_APP_API_URL;
 const MeetingRoom = () => {
   const [meetingRoom, setMeetingRoom] = useState([]);
   const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
