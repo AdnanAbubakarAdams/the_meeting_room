@@ -5,6 +5,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { RxStopwatch } from "react-icons/rx";
 import { Button } from "@mui/material";
 
+import './BookingDetails.css'
+
 const BookingDetails = () => {
   const buttonStyle = {
     backgroundColor: "black",
@@ -32,7 +34,7 @@ const BookingDetails = () => {
   };
 
   return (
-    <div>
+    <div className="details-card">
       <h1>{booked.meeting_name}</h1>
       <h3>
         <RxStopwatch /> {booked.start_date}

@@ -54,51 +54,60 @@ const BookRoomForm = () => {
         attendees: ""
       });
 
+      
 
+      // const formatDate = (datetime_string) => {
+      //   // const date = new Date(isoDate);
+      //   // return format(date, 'YYYY-MM-DDTHH:mm');
+      //   
+      // };
+
+      // "MM/dd/yyyy hh:mm aaaaa'm'"
       // const formatDate = (isoDate) => {
-      //   const date = new Date(isoDate);
-      //   return format(date, 'YYYY-MM-DDTHH:mm');
+      //   if (isoDate) {
+      //     const date = parseISO(isoDate); // Parse ISO date
+      //     return format(date, 'yyyy-MM-dd\'T\'HH:mm'); // Format for input field
+      //     // const formattedTime = format(date, 'h:mm a');
+      //     // return `${formatDate} ${formattedTime}`;
+      //   }
+      //   return ''; // Handle empty values if needed
       // };
-
-      const formatDate = (isoDate) => {
-        if (isoDate) {
-          const date = parseISO(isoDate); // Parse ISO date
-          return format(date, 'yyyy-MM-dd\'T\'HH:mm'); // Format for input field
-          // const formattedTime = format(date, 'h:mm a');
-          // return `${formatDate} ${formattedTime}`;
-        }
-        return ''; // Handle empty values if needed
-      };
     
     
       // const handleTextChanges = (e) => {
       //   const { id, value } = e.target;
     
       //   if (id === 'start_date' || id === 'end_date') {
-      //     const isoDateTime = new Date(value).toISOString();
+      //     const isoDateTime = new Date(value).toLocaleString();
       //     setBooked({ ...booked, [id]: isoDateTime });
       //   } else {
       //     setBooked({ ...booked, [id]: value });
       //   }
       // };
 
-      // const handleTextChanges = (e) => {
-      //   const { id, value } = e.target;
-      
-      //   if (id === 'start_date' || id === 'end_date') {
-      //     // Ensure that the input value is in the correct format (YYYY-MM-DDTHH:mm)
-      //     const isoDateTime = value.replace(' ', 'T');
-      //     setBooked({ ...booked, [id]: isoDateTime });
-      //   } else {
-      //     setBooked({ ...booked, [id]: value });
-      //   }
-      // };
-      
-
+      // function formatDateTime(dateTimeString) {
+      //   var options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+      //   return new Date(dateTimeString).toLocaleDateString(undefined, options);
+      // }
 
       const handleTextChanges = (e) => {
-        setBooked({ ...booked, [e.target.id]: e.target.value })
-      }
+        const { id, value } = e.target;
+      
+        if (id === 'start_date' || id === 'end_date') {
+          // Ensure that the input value is in the correct format (YYYY-MM-DDTHH:mm)
+          const isoDateTime = value.replace(' ', 'T');
+          setBooked({ ...booked, [id]: isoDateTime });
+        } else {
+          setBooked({ ...booked, [id]: value });
+        }
+      };
+     
+      
+
+
+      // const handleTextChanges = (e) => {
+      //   setBooked({ ...booked, [e.target.id]: e.target.value })
+      // }
 
     //   submit method
       const handleSubmit = (e) => {
@@ -137,7 +146,7 @@ const BookRoomForm = () => {
                           variant="outlined"
                           id="start_date"
                           helperText="Start-Date"
-                          value={formatDate(booked.start_date)}
+                          value={booked.start_date}
                           onChange={handleTextChanges}
                           fullWidth
                           required
@@ -151,7 +160,7 @@ const BookRoomForm = () => {
                           helperText="End-Date"
                           variant="outlined"
                           id="end_date"
-                          value={formatDate(booked.end_date)}
+                          value={booked.end_date}
                           onChange={handleTextChanges}
                           fullWidth
                           required

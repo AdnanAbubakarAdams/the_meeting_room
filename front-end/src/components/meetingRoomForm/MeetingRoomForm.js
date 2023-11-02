@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 
@@ -24,13 +24,48 @@ const MeetingRoomForm = () => {
     color: '#fff',
   };
   
+  let navigate = useNavigate(); 
+  let { id } = useParams()
+
+      const findAMeetingRoom = (findingRoom) => {
+        debugger;
+        axios
+          .post(`${API}/meeting-rooms/${id}/bookings`,findingRoom)
+          .then(
+            () => {
+              navigate("/meeting-rooms");
+            },
+            (error) => console.error(error)
+          )
+          .catch((c) => console.warn("catch", c));
+      };
+
+      const [find, setFind] = useState({
+        start_date: "", 
+        end_date: "",
+        floor: "", 
+        capacity: ""
+      });
+
+
+      const handleTextChanges = (e) => {
+        setFind({ ...find, [e.target.id]: e.target.value })
+      }
+
+    //   submit method
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      findAMeetingRoom(find);
+    };
+
+
     return (
         <Container maxWidth="xs" className="centered-form">
         <Stack  justify="center" spacing={4} sx={{ width: '380px'}}>
           <Card className="meetingRoom-form">
             <CardContent>
               <h3>Find Available Rooms: </h3>
-              <form >
+              <form onSubmit={handleSubmit}>
                 <Stack container spacing={2}>
                   <Stack>
                     <TextField
@@ -38,9 +73,9 @@ const MeetingRoomForm = () => {
                       type="datetime-local"
                       placeholder="2/14/2022 11:00 AM"
                       variant="outlined"
-                      id="start"
-                      value=""
-                      onChange=""
+                      id="start_date"
+                      value={find.start_date}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />
@@ -51,10 +86,10 @@ const MeetingRoomForm = () => {
                       placeholder="2/14/2022 11:00 AM"
                       type="datetime-local"
                       variant="outlined"
-                      id="end"
+                      id="end_date"
                       helperText="Request Date"
-                      value=""
-                      onChange=""
+                      value={find.end_date}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />
@@ -64,9 +99,9 @@ const MeetingRoomForm = () => {
                       label="Floor"
                       placeholder="22"
                       variant="outlined"
-                      id="description"
-                      value=""
-                      onChange=""
+                      id="floor"
+                      value={find.floor}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />
@@ -77,8 +112,8 @@ const MeetingRoomForm = () => {
                       placeholder="4"
                       variant="outlined"
                       id="capacity"
-                      value=""
-                      onChange=""
+                      value={find.capacity}
+                      onChange={handleTextChanges}
                       fullWidth
                       required
                     />
