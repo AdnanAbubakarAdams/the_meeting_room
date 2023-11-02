@@ -32,15 +32,18 @@ const BookingDetails = () => {
       .then(() => navigate("/bookings"))
       .catch((err) => console.error(err));
   };
+  const formatDate = (d) => {
+    return new Date(d).toLocaleString();
+  }
 
   return (
     <div className="details-card">
       <h1>{booked.meeting_name}</h1>
       <h3>
-        <RxStopwatch /> {booked.start_date}
+        <RxStopwatch /> {formatDate(booked.start_date)}
       </h3>
       <h3>
-        <RxStopwatch /> {booked.end_date}
+        <RxStopwatch /> {formatDate(booked.end_date)}
       </h3>
       <div>
         <Button
