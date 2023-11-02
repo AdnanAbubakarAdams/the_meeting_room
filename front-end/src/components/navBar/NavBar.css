@@ -1,6 +1,6 @@
 .navBar {
   width: 590px;
-  margin: 27px auto;
+  /* margin: 27px auto; */
   height: 4rem;
   background-color: #000;
   color: #fff;
@@ -10,6 +10,7 @@
   grid-template-columns: repeat(3, 1fr);
   border-radius: 15px;
   overflow: hidden;
+  /* position: sticky; */
 }
 
 .nav-link {
@@ -24,6 +25,6 @@
 
 .nav-link.active {
   border-radius: 8px;
-  background-color: #e5e5e5; /* Change this to your desired active link background color */
-  color: #000; /* Change this to your desired active link text color */
+  background-color: #e5e5e5; 
+  color: #000;
 }
