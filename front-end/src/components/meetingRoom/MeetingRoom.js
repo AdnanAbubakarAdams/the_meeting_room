@@ -35,8 +35,6 @@ const MeetingRoom = () => {
       <MeetingRoomForm />
       <div className='seperator'></div>
 
-      
-
       <ul className="meetingRoom-list">
         {meetingRoom.map((room) => {
           return (

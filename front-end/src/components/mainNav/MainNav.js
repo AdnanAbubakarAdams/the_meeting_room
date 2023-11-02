@@ -1,17 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from "../utils/AuthContext";
 import NavBar from '../navBar/NavBar';
 
 
 
 const MainNav = () => {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const {user, logoutUser} = useAuth()
 
-    // const logoutClick = () => {
-    //     navigate('/login')
-    // }
+    const logoutClick = () => {
+        navigate('/login')
+    }
 
   return (
     <div className="header">
