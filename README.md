@@ -19,6 +19,8 @@ between is designed to streamline the entire process, making it easier than ever
 - Postgresql
 
 ### Repository
+- Netlify Deployment: https://the-meeting-room.netlify.app
+- Adaptable Deployment: https://meeting-room-take-home.adaptable.app
 - Project Mono Repo https://github.com/AdnanAbubakarAdams/the_meeting_room
 - Github https://github.com/AdnanAbubakarAdams
 - Agile-Board https://trello.com/b/9FnOnFy6/blackstone-takehome-agile-board
