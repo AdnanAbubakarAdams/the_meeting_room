@@ -74,12 +74,12 @@ Create a RESTFul API service with the below endpoints that read and write to the
 
 ## PAGES
 **Login**
-(front-end/public/images/LoginPage.png)
+![Login](front-end/public/images/LoginPage.png)
 **Rooms**
-(front-end/public/images/MeetingRooms.png)
+![Rooms](front-end/public/images/MeetingRooms.png)
 **Booked**
-(front-end/public/images/BookedRooms.png)
+![Booked](front-end/public/images/BookedRooms.png)
 **Create**
-(front-end/public/images/CreateARoom.png)
+![Create](front-end/public/images/CreateARoom.png)
 **Synk Test**
-(front-end/public/images/SnykApplicationtest.png)
+![Snyk](front-end/public/images/SnykApplicationtest.png)
