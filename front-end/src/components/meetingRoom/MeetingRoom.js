@@ -33,8 +33,8 @@ const MeetingRoom = () => {
   return (
     <div className="meetingRoom">
       <MeetingRoomForm />
-      <div className='seperator'></div>
-
+      {/* <div className='seperator'></div> */}
+      <hr width="80%" color="black" size="50px" ></hr>
       <ul className="meetingRoom-list">
         {meetingRoom.map((room) => {
           return (

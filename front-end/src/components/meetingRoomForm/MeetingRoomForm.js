@@ -58,6 +58,8 @@ const MeetingRoomForm = () => {
       findAMeetingRoom(find);
     };
 
+    // justify="center" spacing={4} sx={{ width: '600px'}}
+
 
     return (
         <Container maxWidth="xs" className="centered-form">

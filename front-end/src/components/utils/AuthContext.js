@@ -1,86 +1,86 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { account } from "../../appwrite.Config.js";
-import { useNavigate } from "react-router-dom";
-import { ID} from 'appwrite';
+// import { createContext, useState, useEffect, useContext } from "react";
+// import { account } from "../../appwrite.Config.js";
+// import { useNavigate } from "react-router-dom";
+// import { ID} from 'appwrite';
 
-const AuthContext = createContext()
+// const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {
-        const navigate = useNavigate()
+// export const AuthProvider = ({children}) => {
+//         const navigate = useNavigate()
 
-        const [loading, setLoading] = useState(true)
-        const [user, setUser] = useState(null)
+//         const [loading, setLoading] = useState(true)
+//         const [user, setUser] = useState(null)
 
-        useEffect(() => {
-            // setLoading(false)
-            checkUserStatus()
-         }, [])
+//         useEffect(() => {
+//             // setLoading(false)
+//             checkUserStatus()
+//          }, [])
 
-         const loginUser = async (userInfo) => {
-            setLoading(true)
+//          const loginUser = async (userInfo) => {
+//             setLoading(true)
 
-            console.log('userInfo',userInfo)
+//             console.log('userInfo',userInfo)
 
-            try{
-                let response = await account.createEmailSession(userInfo.email, userInfo.password)
-                let accountDetails = await account.get();
-                setUser(accountDetails)
-            }catch(error){
-                console.error(error)
-            }
-            setLoading(false)
+//             try{
+//                 let response = await account.createEmailSession(userInfo.email, userInfo.password)
+//                 let accountDetails = await account.get();
+//                 setUser(accountDetails)
+//             }catch(error){
+//                 console.error(error)
+//             }
+//             setLoading(false)
             
-         }
+//          }
 
-         const logoutUser = async () => {
-            await account.deleteSession('current');
-            setUser(null)
-         }
+//          const logoutUser = async () => {
+//             await account.deleteSession('current');
+//             setUser(null)
+//          }
 
-         const registerUser = async (userInfo) => {
-            setLoading(true)
+//          const registerUser = async (userInfo) => {
+//             setLoading(true)
 
-            try{
+//             try{
                 
-                let response = await account.create(ID.unique(), userInfo.email, userInfo.password1, userInfo.name);
+//                 let response = await account.create(ID.unique(), userInfo.email, userInfo.password1, userInfo.name);
         
-                await account.createEmailSession(userInfo.email, userInfo.password1)
-                let accountDetails = await account.get();
-                setUser(accountDetails)
-                navigate('/')
-            }catch(error){
-                console.error(error)
-            }
+//                 await account.createEmailSession(userInfo.email, userInfo.password1)
+//                 let accountDetails = await account.get();
+//                 setUser(accountDetails)
+//                 navigate('/')
+//             }catch(error){
+//                 console.error(error)
+//             }
         
-            setLoading(false)
-         }
+//             setLoading(false)
+//          }
 
-         const checkUserStatus = async () => {
-            try{
-                let accountDetails = await account.get();
-                setUser(accountDetails)
-            }catch(error){
+//          const checkUserStatus = async () => {
+//             try{
+//                 let accountDetails = await account.get();
+//                 setUser(accountDetails)
+//             }catch(error){
                 
-            }
-            setLoading(false)
-         }
+//             }
+//             setLoading(false)
+//          }
 
-        const contextData = {
-            user,
-            loginUser,
-            logoutUser,
-            registerUser
-        }
+//         const contextData = {
+//             user,
+//             loginUser,
+//             logoutUser,
+//             registerUser
+//         }
 
-    return(
-        <AuthContext.Provider value={contextData}>
-            {loading ? <p>Loading...</p> : children}
-        </AuthContext.Provider>
-    )
-}
+//     return(
+//         <AuthContext.Provider value={contextData}>
+//             {loading ? <p>Loading...</p> : children}
+//         </AuthContext.Provider>
+//     )
+// }
 
-//Custom Hook
-export const useAuth = ()=> {return useContext(AuthContext)}
+// //Custom Hook
+// export const useAuth = ()=> {return useContext(AuthContext)}
 
 
-export default AuthContext;
+// export default AuthContext;

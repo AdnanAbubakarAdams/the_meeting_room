@@ -5,7 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { RxStopwatch } from "react-icons/rx";
 import { Button } from "@mui/material";
 
-import './BookingDetails.css'
+import "./BookingDetails.css";
 
 const BookingDetails = () => {
   const buttonStyle = {
@@ -31,23 +31,39 @@ const BookingDetails = () => {
       .delete(`${API}/bookings/${id}`)
       .then(() => navigate("/bookings"))
       .catch((err) => console.error(err));
+      alert("Thank You, and room has been cancelled")
   };
+
   const formatDate = (d) => {
     return new Date(d).toLocaleString();
-  }
+  };
 
   return (
     <div className="details-card">
       <h1>{booked.meeting_name}</h1>
-      <h3>
-        <RxStopwatch /> {formatDate(booked.start_date)}
-      </h3>
-      <h3>
-        <RxStopwatch /> {formatDate(booked.end_date)}
-      </h3>
+      <h4>
+        <RxStopwatch
+          style={{
+            verticalAlign: "bottom",
+            fontSize: "20px",
+            marginRight: "10px",
+          }}
+        />
+        {formatDate(booked.start_date)}
+      </h4>
+      <h4>
+        <RxStopwatch
+          style={{
+            verticalAlign: "bottom",
+            fontSize: "20px",
+            marginRight: "10px",
+          }}
+        />
+        {formatDate(booked.end_date)}
+      </h4>
       <div>
         <Button
-        onClick={handleCancel}
+          onClick={handleCancel}
           style={buttonStyle}
           sx={{ width: "120px" }}
           type="submit"
