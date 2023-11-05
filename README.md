@@ -20,6 +20,7 @@ between is designed to streamline the entire process, making it easier than ever
 
 ### Repository
 - Netlify Deployment: https://the-meeting-room.netlify.app
+- Deployment With No User Login: https://the-meeting-room-2.netlify.app
 - Adaptable Deployment: https://meeting-room-take-home.adaptable.app
 - Project Mono Repo https://github.com/AdnanAbubakarAdams/the_meeting_room
 - Github https://github.com/AdnanAbubakarAdams
